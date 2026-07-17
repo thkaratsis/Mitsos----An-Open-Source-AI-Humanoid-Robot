@@ -106,12 +106,12 @@ The **MG996R** arm servos and **MG90S** head servos operate from **V+** and are 
 | Maximum Modules | 62 on one I²C bus |
 
 
-<table>
-<tr>
+<table style="border:none;">
+<tr style="border:none;">
 
-<td valign="top" width="33%">
+<td valign="top" width="34%" style="border:none; padding-right:20px;">
 
-### WP5335 (Legs)
+<b>WP5335 (Legs)</b>
 
 | Joint | Ch |
 |---|:---:|
@@ -126,9 +126,9 @@ The **MG996R** arm servos and **MG90S** head servos operate from **V+** and are 
 
 </td>
 
-<td valign="top" width="33%">
+<td valign="top" width="33%" style="border:none; padding:0 20px;">
 
-### MG996R (Arms)
+<b>MG996R (Arms)</b>
 
 | Joint | Ch |
 |---|:---:|
@@ -141,9 +141,9 @@ The **MG996R** arm servos and **MG90S** head servos operate from **V+** and are 
 
 </td>
 
-<td valign="top" width="33%">
+<td valign="top" width="33%" style="border:none; padding-left:20px;">
 
-### MG90S (Head)
+<b>MG90S (Head)</b>
 
 | Joint | Ch |
 |---|:---:|
