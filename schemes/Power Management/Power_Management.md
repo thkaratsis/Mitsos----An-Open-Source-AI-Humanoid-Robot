@@ -1,5 +1,14 @@
 # Power Management
 
+<p align="center">
+  <img src="schemes/Power%20Management/Sheet_1.png" width="950">
+</p>
+
+<p align="center">
+  <em>Figure 1. Power management schematic of the robot.</em>
+</p>
+
+
 The system is powered by **four 18650 batteries**, consisting of **two parallel cell groups connected in series**, creating a **2S2P lithium-ion battery pack**.
 
 By connecting **two batteries in parallel**, the battery capacity is doubled, increasing the overall runtime of the robot.
