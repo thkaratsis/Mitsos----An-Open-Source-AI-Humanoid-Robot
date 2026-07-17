@@ -62,7 +62,15 @@ The LSM6DS3 combines a **3-axis accelerometer** and a **3-axis gyroscope** into 
 | Output Data Rate | Up to 6.66 kHz |
 | Power Consumption | As low as 0.9 mA (typical) |
 
-
 > **Sensor Integration**
 >
 > The **LSM6DS3** is connected to the **ESP32-S3** through the **I²C bus**. The ESP32 continuously gathers acceleration and gyroscope measurements, processes the raw sensor data, and transmits orientation and motion information to the **Raspberry Pi 5** via the **UART** interface. This allows the ESP32 to perform  real-time sensor acquisition while the Raspberry Pi focuses on high-level control
+
+
+# Servo Controller
+
+The whole robot has a total of 16 servos and each one requires 3 pins to work v+,gnd, and pwm thus it would take 16 gpio pins to controll all of them. However, there is a module that can connect to the esp32 via i2c and controll the 16 servos at a time and that is teh pca9685. The robot utilizes 2 pca9685's: 1)one for the legs (8 servos) and another for the arms and Mounted on a two-axis mechanism on the head.Although on the module it self there is a V+ pins which is the voltage given to the servos but it can only handle 6.5V max.
+
+The robot has a total of 3 different types of servos. On the legs it has the WP5335, on the arms it has the MG996R and on the head the mg90s. The las 2 types can work with 5v but the first type in order to use its full capacity it needs 8.4(Vbat).
+
+In order to drive the wp5335 with 8.4v, extra male header pins are installed into the board to which the wp5335 servos are connected, the other 2 types connect striaght into the pca module
