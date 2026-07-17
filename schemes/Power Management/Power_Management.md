@@ -11,3 +11,6 @@ Following, the Batteries connect striaght to a BMS and more specifically the HX-
 -Overcharge protection
 -Over-discharge protection
 -Over-current protection 
+Moreover a 4A fuse is connected to ensure no issue can can problem to the board and a switch to turn on/off the robot
+
+
