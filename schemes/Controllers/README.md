@@ -4,44 +4,6 @@
   <img src="https://raw.githubusercontent.com/thkaratsis/Mitsos----An-Open-Source-AI-Humanoid-Robot/main/schemes/Controllers/Controllers.png" alt="Power Management Schematic" width="900">
 </p>
 
-```mermaid
-flowchart LR
-
-%%==========================
-%% Raspberry Pi
-%%==========================
-subgraph PI["🖥️ Raspberry Pi 5"]
-direction TB
-    HC["High-Level Control"]
-    CV["Computer Vision"]
-    AI["AI Inference"]
-    NAV["Navigation"]
-end
-
-%%==========================
-%% UART
-%%==========================
-UART["🔄 UART<br/>TX ↔ RX"]
-
-%%==========================
-%% ESP32
-%%==========================
-subgraph ESP["⚙️ ESP32-S3-N8R8"]
-direction TB
-    SERVO["Servo Control"]
-    RT["Real-Time Tasks"]
-    IMU["IMU"]
-    TOF["ToF Sensors"]
-    US["Ultrasonic Sensors"]
-end
-
-PI <-->|Bidirectional Communication| UART
-UART <-->|Bidirectional Communication| ESP
-
-HC -. Servo Commands .-> SERVO
-RT -. Sensor Data .-> HC
-```
-
 The robot's main controller is the **Raspberry Pi 5**, a powerful single-board computer (SBC) responsible for high-level control, computer vision, and AI inference. An **ESP32-S3-N8R8** microcontroller is used alongside the Raspberry Pi to accurate controll and gather data from all of the sensors.
 
 To ensure reliable communication between the two processing units, the **Raspberry Pi 5** and the **ESP32-S3-N8R8** exchange data over a **full-duplex UART interface**. This bidirectional communication enables simultaneous transmission and reception of commands and sensor data.
