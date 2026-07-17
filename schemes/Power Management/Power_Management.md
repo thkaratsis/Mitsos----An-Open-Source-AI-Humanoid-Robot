@@ -1,11 +1,7 @@
 # Power Management
 
 <p align="center">
-  <img src="schemes/Power%20Management/Sheet_1.png" width="950">
-</p>
-
-<p align="center">
-  <em>Figure 1. Power management schematic of the robot.</em>
+  <img src="https://raw.githubusercontent.com/thkaratsis/Mitsos----An-Open-Source-AI-Humanoid-Robot/main/schemes/Power%20Management/Sheet_1.png" alt="Power Management Schematic" width="900">
 </p>
 
 
