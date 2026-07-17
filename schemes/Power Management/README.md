@@ -4,19 +4,26 @@
   <img src="https://raw.githubusercontent.com/thkaratsis/Mitsos----An-Open-Source-AI-Humanoid-Robot/main/schemes/Power%20Management/Power%20Managment.png" alt="Power Management Schematic" width="900">
 </p>
 
-             2S2P Li-ion Battery
-                     |
-                 HX-2S-01 BMS
-                     |
-                4A Fuse
-                     |
-                Main Switch
-                     |
-    --------------------------------
-    |              |               |
-    |              |               |
- 5V Rail 1      5V Rail 2      Servo Rail
-    |              |               |
+```mermaid
+flowchart TD
+    A[" 2S2P Li-ion Battery Pack"] --> B[" HX-2S-01 BMS"]
+    B --> C[" 4A Fuse"]
+    C --> D[" Main Power Switch"]
+
+    D --> E[" LM2596<br/>5V Rail #1"]
+    D --> F[" LM2596<br/>5V Rail #2"]
+    D --> G[" Waveshare<br/>Servo Rail"]
+
+    E --> E1["Raspberry Pi 5"]
+    E --> E2["MAX98357A"]
+    E --> E3["Camera Ring Light"]
+
+    F --> F1["ESP32"]
+    F --> F2["Sensors"]
+    F --> F3["Peripherals"]
+
+    G --> G1["MG996R Servos"]
+```
 
 
 The system is powered by **four 18650 batteries**, consisting of **two parallel cell groups connected in series**, creating a **2S2P lithium-ion battery pack**.
