@@ -5,6 +5,63 @@
 </p>
 
 
+```mermaid
+flowchart TB
+
+    %% =========================
+    %% Main Processing
+    %% =========================
+
+    PI[" Raspberry Pi 5<br/>High-Level Control<br/>AI Inference<br/>Computer Vision"]
+
+    ESP[" ESP32-S3-N8R8<br/>Real-Time Sensor Controller"]
+
+    CAM[" Sony IMX219<br/>8 MP Camera"]
+
+    %% =========================
+    %% Sensor Bus
+    %% =========================
+
+    I2C["I²C Bus"]
+
+    IMU[" LSM6DS3<br/>6-Axis IMU"]
+
+    TOF[" 5 × VL53L0X<br/>Time-of-Flight Sensors"]
+
+    XSHUT["GPIO XSHUT<br/>Address Assignment"]
+
+    %% =========================
+    %% Connections
+    %% =========================
+
+    CAM -- "MIPI CSI-2" --> PI
+
+    PI <-->|"UART 115200 bps"| ESP
+
+    ESP --> I2C
+
+    I2C --> IMU
+    I2C --> TOF
+
+    ESP -. "GPIO" .-> XSHUT
+    XSHUT -.-> TOF
+
+    %% =========================
+    %% Colors
+    %% =========================
+
+    classDef pi fill:#d9ead3,stroke:#6aa84f,stroke-width:2px,color:#000;
+    classDef esp fill:#d9eaf7,stroke:#3d85c6,stroke-width:2px,color:#000;
+    classDef sensor fill:#fff2cc,stroke:#bf9000,stroke-width:2px,color:#000;
+    classDef bus fill:#eeeeee,stroke:#666666,stroke-width:2px,color:#000;
+
+    class PI pi
+    class ESP esp
+    class CAM,IMU,TOF sensor
+    class I2C,XSHUT bus
+```
+
+
 # Distance Sensors
 
 To enable safe and autonomous navigation, the robot is equipped with **five VL53L0X Time-of-Flight (ToF) distance sensors**. These measure the distance to nearby objects, allowing the robot to avoid obstacles, navigate environments, and estimate its surroundings with millimeter-level precision.
