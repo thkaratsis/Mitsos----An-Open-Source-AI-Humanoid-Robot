@@ -69,8 +69,112 @@ The LSM6DS3 combines a **3-axis accelerometer** and a **3-axis gyroscope** into 
 
 # Servo Controller
 
-The whole robot has a total of 16 servos and each one requires 3 pins to work v+,gnd, and pwm thus it would take 16 gpio pins to controll all of them. However, there is a module that can connect to the esp32 via i2c and controll the 16 servos at a time and that is teh pca9685. The robot utilizes 2 pca9685's: 1)one for the legs (8 servos) and another for the arms and Mounted on a two-axis mechanism on the head.Although on the module it self there is a V+ pins which is the voltage given to the servos but it can only handle 6.5V max.
+The robot is actuated by a total of **16 servo motors**, each requiring three electrical connections: **Power (V+), Ground (GND), and a PWM control signal**. Driving all servos directly from the ESP32 would require a large number of GPIO pins, making the design unnecessarily complex.
 
-The robot has a total of 3 different types of servos. On the legs it has the WP5335, on the arms it has the MG996R and on the head the mg90s. The las 2 types can work with 5v but the first type in order to use its full capacity it needs 8.4(Vbat).
+To simplify the hardware architecture, the robot uses **two PCA9685 16-channel PWM controllers**, which communicate with the **ESP32-S3** over the **I²C bus**. This allows all servos to be controlled using only two communication lines (SDA and SCL), while providing precise 12-bit PWM signals for every servo.
 
-In order to drive the wp5335 with 8.4v, extra male header pins are installed into the board to which the wp5335 servos are connected, the other 2 types connect striaght into the pca module
+The first PCA9685 is dedicated to the **leg servos (8× WP5335)**, while the second controls the **arm servos (6× MG996R)** and the **head pan-tilt mechanism (2× MG90S)**.
+
+Although the PCA9685 includes a **V+** terminal for powering servos, the board is designed for voltages up to approximately **6.5 V**. Since the **WP5335** servos achieve their maximum performance at **8.4 V (VBAT)**, they are powered directly from the battery through dedicated header pins installed on the custom PCB. The PCA9685 is therefore used only to provide the PWM control signals for these servos.
+
+The **MG996R** arm servos and **MG90S** head servos operate from **5 V** and are powered directly through the PCA9685 module.
+
+---
+
+## Servo Types
+
+| Servo | Quantity | Location | Operating Voltage |
+|---|:---:|---|:---:|
+| WP5335 | 8 | Legs | 8.4 V (VBAT) |
+| MG996R | 6 | Arms | 5 V |
+| MG90S | 2 | Head Pan-Tilt | 5 V |
+
+---
+
+## PCA9685 Specifications
+
+| Specification | Value |
+|---|---|
+| Device | PCA9685 |
+| Function | 16-Channel PWM Servo Controller |
+| Channels | 16 |
+| PWM Resolution | 12-bit (4096 steps) |
+| PWM Frequency | 24 Hz – 1.6 kHz |
+| Communication Interface | I²C |
+| Logic Voltage (VCC) | 3.3–5 V |
+| Servo Supply (V+) | Up to 6.5 V |
+| Maximum Modules | 62 on one I²C bus |
+
+
+<table>
+<tr>
+
+<td valign="top" width="33%">
+
+### WP5335 (Legs)
+
+| Joint | Ch |
+|---|:---:|
+| Left Pelvis | 4 |
+| Left Hip | 11 |
+| Left Knee | 9 |
+| Left Ankle | 14 |
+| Right Pelvis | 5 |
+| Right Hip | 10 |
+| Right Knee | 8 |
+| Right Ankle | 15 |
+
+</td>
+
+<td valign="top" width="33%">
+
+### MG996R (Arms)
+
+| Joint | Ch |
+|---|:---:|
+| Left Shoulder | 0 |
+| Left Elbow | 2 |
+| Left Hand | 4 |
+| Right Shoulder | 1 |
+| Right Elbow | 3 |
+| Right Hand | 5 |
+
+</td>
+
+<td valign="top" width="33%">
+
+### MG90S (Head)
+
+| Joint | Ch |
+|---|:---:|
+| X-axis | 14 |
+| Y-axis | 15 |
+
+</td>
+
+</tr>
+</table>
+
+
+## Servo Channel Mapping
+
+| Servo | Joint | PCA9685 | Channel |
+|---|---|:---:|:---:|
+| WP5335 | Left Pelvis | Legs | 4 |
+| WP5335 | Left Hip | Legs | 11 |
+| WP5335 | Left Knee | Legs | 9 |
+| WP5335 | Left Ankle | Legs | 14 |
+| WP5335 | Right Pelvis | Legs | 5 |
+| WP5335 | Right Hip | Legs | 10 |
+| WP5335 | Right Knee | Legs | 8 |
+| WP5335 | Right Ankle | Legs | 15 |
+| MG996R | Left Shoulder | Arms | 0 |
+| MG996R | Left Elbow | Arms | 2 |
+| MG996R | Left Hand | Arms | 4 |
+| MG996R | Right Shoulder | Arms | 1 |
+| MG996R | Right Elbow | Arms | 3 |
+| MG996R | Right Hand | Arms | 5 |
+| MG90S | Head X-axis | Arms | 14 |
+| MG90S | Head Y-axis | Arms | 15 |
+
+
