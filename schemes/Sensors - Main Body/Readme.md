@@ -32,10 +32,37 @@ Together, these sensors provide nearly **360° obstacle awareness**, enabling th
 | Field of View (FOV) | 25°–35° |
 | Operating Voltage | 2.6–3.5 V |
 
----
 
 > **Address Configuration**
 >
 > All **VL53L0X** sensors share the same default **I²C address (0x29)**. Since multiple sensors are connected to the same I²C bus, each sensor's **XSHUT** pin is connected to a dedicated GPIO pin on the **ESP32-S3**.
 >
 > During system startup, the ESP32 keeps all sensors in hardware shutdown. It then enables them **one at a time**, assigns each sensor a unique I²C address through software, and finally activates the next sensor. This initialization process allows all five VL53L0X sensors to operate simultaneously on the same I²C bus without address conflicts.
+
+# Inertial Measurement Unit (IMU)
+
+Maintaining balance is one of the most important parts of a humanoid robot. To achieve this, the robot is equipped with an **LSM6DS3 Inertial Measurement Unit (IMU)**, which  measures both **linear acceleration** and **angular velocity** along the **X, Y, and Z axes**.
+
+The IMU provides real-time orientation and motion data, allowing the robot to detect body tilt, acceleration, and rotational movement. This information is used by the control algorithms to maintain stabilit and achieve smooth walking and motion sequences.
+
+The LSM6DS3 combines a **3-axis accelerometer** and a **3-axis gyroscope** into a single low-power package, making it an ideal sensor for humanoid robotics applications.
+
+## LSM6DS3 Specifications
+
+| Specification | Value |
+|---|---|
+| Sensor Type | 6-Axis Inertial Measurement Unit (IMU) |
+| Accelerometer | 3-Axis |
+| Gyroscope | 3-Axis |
+| Accelerometer Range | ±2 / ±4 / ±8 / ±16 g |
+| Gyroscope Range | ±125 / ±245 / ±500 / ±1000 / ±2000 dps |
+| Operating Voltage | 1.71 V – 3.6 V |
+| Interface | I²C (up to 1 MHz) or SPI (up to 10 MHz) |
+| Default I²C Address | 0x6A (0x6B configurable) |
+| Output Data Rate | Up to 6.66 kHz |
+| Power Consumption | As low as 0.9 mA (typical) |
+
+
+> **💡 Sensor Integration**
+>
+> The **LSM6DS3** is connected to the **ESP32-S3** through the **I²C bus**. The ESP32 continuously gathers acceleration and gyroscope measurements, processes the raw sensor data, and transmits orientation and motion information to the **Raspberry Pi 5** via the **UART** interface. This allows the ESP32 to perform  real-time sensor acquisition while the Raspberry Pi focuses on high-level control
