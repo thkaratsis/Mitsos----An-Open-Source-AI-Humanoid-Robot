@@ -1,0 +1,49 @@
+## Hardware Architecture
+
+```mermaid
+flowchart TD
+
+    PWR["Power Management"]
+
+    CTRL["Controllers"]
+
+    MAIN["Sensors - Main Body"]
+
+    HEAD["Sensors - Head"]
+
+    LIGHT["Camera RingLight"]
+
+    SERVO["Servo Controller"]
+
+    PWR --> CTRL
+
+    CTRL --> MAIN
+    CTRL --> HEAD
+    CTRL --> SERVO
+
+    HEAD --> LIGHT
+```
+
+
+# Folder Overview
+
+| Folder | Description |
+|---------|-------------|
+| **Power Management** | Battery pack, BMS, fuse, power switch, voltage regulators, and power distribution throughout the robot. |
+| **Controllers** | Raspberry Pi 5, ESP32-S3, processor communication, and overall system architecture. |
+| **Sensors - Main Body** | IMU, Time-of-Flight sensors, PCA9685 servo controllers, camera interface, and communication buses located in the robot's main body. |
+| **Sensors - Head** | Head electronics including the TFT display, MEMS microphone, audio amplifier, ribbon cable interface, and camera ring light connection. |
+| **Camera RingLight** | Dedicated LED illumination PCB mounted around the camera to provide consistent lighting for computer vision tasks. |
+
+# Documentation
+
+Every hardware subsystem includes:
+
+- Electrical schematic
+- Hardware overview
+- Communication architecture
+- Component specifications
+- Design considerations
+- Mermaid block diagrams
+
+This modular documentation structure makes it easier to understand, maintain, and extend the robot's electronics while providing a complete reference for anyone wishing to reproduce or modify the hardware.
