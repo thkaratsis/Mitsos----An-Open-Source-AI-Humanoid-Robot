@@ -4,6 +4,29 @@
   <img src="https://raw.githubusercontent.com/thkaratsis/Mitsos----An-Open-Source-AI-Humanoid-Robot/main/schemes/Controllers/Controllers.png" alt="Power Management Schematic" width="900">
 </p>
 
+```mermaid
+flowchart LR
+
+    subgraph SBC[" Raspberry Pi 5"]
+        PI1["High-Level Control"]
+        PI2["Computer Vision"]
+        PI3["AI Inference"]
+        PI4["Navigation"]
+    end
+
+    subgraph MCU[" ESP32-S3-N8R8"]
+        ESP1["Servo Control"]
+        ESP2["Real-Time Sensors"]
+        ESP3["IMU"]
+        ESP4["ToF Sensors"]
+        ESP5["Ultrasonic Sensors"]
+    end
+
+    SBC <-->|"UART (TX/RX)<br/>Bidirectional Serial Communication"| MCU
+
+    PI1 -. "Servo Commands" .-> MCU
+    MCU -. "Sensor Data" .-> PI1
+```
 
 The robot's main controller is the **Raspberry Pi 5**, a powerful single-board computer (SBC) responsible for high-level control, computer vision, and AI inference. An **ESP32-S3-N8R8** microcontroller is used alongside the Raspberry Pi to accurate controll and gather data from all of the sensors.
 
