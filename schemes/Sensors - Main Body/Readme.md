@@ -4,7 +4,6 @@
   <img src="https://raw.githubusercontent.com/thkaratsis/Mitsos----An-Open-Source-AI-Humanoid-Robot/main/schemes/Sensors - Main Body/Sheet_3.png" alt="" width="900">
 </p>
 
-
 ```mermaid
 flowchart TB
 
@@ -12,70 +11,69 @@ flowchart TB
 %% PROCESSING
 %% =====================================================
 
-    PI["Raspberry Pi 5"]
-    ESP["ESP32-S3-N8R8"]
+subgraph PROCESSING["Processing Unit"]
+direction LR
 
-    PI <-->|UART| ESP
+PI["Raspberry Pi 5"]
 
-%% =====================================================
-%% CAMERA
-%% =====================================================
+CAM["Sony IMX219 Camera"]
 
-    CAM["Sony IMX219 Camera"]
+PI -->|MIPI CSI-2| CAM
 
-    CAM -->|MIPI CSI-2| PI
+end
+
+ESP["ESP32-S3-N8R8"]
+
+PI <-->|UART| ESP
 
 %% =====================================================
 %% SENSOR BUS
 %% =====================================================
 
-    I2C["I²C Bus"]
+I2C["I²C Bus"]
 
-    ESP --> I2C
+ESP --> I2C
 
-    IMU["LSM6DS3 IMU"]
+IMU["LSM6DS3 IMU"]
 
-    TOF["5 × VL53L0X ToF Sensors"]
+TOF["5 × VL53L0X ToF Sensors"]
 
-    I2C --> IMU
-    I2C --> TOF
+I2C --> IMU
+I2C --> TOF
 
-    ESP -. XSHUT GPIO .-> TOF
-
-%% =====================================================
-%% SERVO BUS
-%% =====================================================
-
-    PCA1["PCA9685 #1<br/>Leg Servos"]
-
-    PCA2["PCA9685 #2<br/>Arms & Head"]
-
-    ESP -->|I²C| PCA1
-    ESP -->|I²C| PCA2
+ESP -. XSHUT GPIO .-> TOF
 
 %% =====================================================
-%% LEG SERVOS
+%% SERVO CONTROLLERS
 %% =====================================================
 
-    WP["8 × WP5335 Servos"]
+subgraph SERVOS["Servo Control"]
 
-    PCA1 -->|PWM| WP
+direction LR
+
+PCA1["PCA9685 #1<br/>Leg Servos"]
+
+PCA2["PCA9685 #2<br/>Arms & Head"]
+
+end
+
+ESP -->|I²C| PCA1
+ESP -->|I²C| PCA2
 
 %% =====================================================
-%% ARM SERVOS
+%% SERVOS
 %% =====================================================
 
-    MG996["6 × MG996R Servos"]
+WP["8 × WP5335 Servos"]
 
-    PCA2 -->|PWM| MG996
+MG996["6 × MG996R Servos"]
 
-%% =====================================================
-%% HEAD SERVOS
-%% =====================================================
+MG90["2 × MG90S Servos"]
 
-    MG90["2 × MG90S Servos"]
+PCA1 -->|PWM| WP
 
-    PCA2 -->|PWM| MG90
+PCA2 -->|PWM| MG996
+PCA2 -->|PWM| MG90
 
 %% =====================================================
 %% COLORS
@@ -96,7 +94,6 @@ class PCA1,PCA2 bus
 
 class WP,MG996,MG90 servo
 ```
-
 
 # Distance Sensors
 
