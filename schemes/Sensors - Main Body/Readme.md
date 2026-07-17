@@ -77,9 +77,9 @@ The first PCA9685 is dedicated to the **leg servos (8× WP5335)**, while the sec
 
 Although the PCA9685 includes a **V+** terminal for powering servos, the board is designed for voltages up to approximately **6.5 V**. Since the **WP5335** servos achieve their maximum performance at **8.4 V (VBAT)**, they are powered directly from the battery through dedicated header pins installed on the custom PCB. The PCA9685 is therefore used only to provide the PWM control signals for these servos.
 
-The **MG996R** arm servos and **MG90S** head servos operate from **5 V** and are powered directly through the PCA9685 module.
+The **MG996R** arm servos and **MG90S** head servos operate from **V+** and are powered directly through the PCA9685 module.
 
----
+
 
 ## Servo Types
 
@@ -89,7 +89,7 @@ The **MG996R** arm servos and **MG90S** head servos operate from **5 V** and are
 | MG996R | 6 | Arms | 5 V |
 | MG90S | 2 | Head Pan-Tilt | 5 V |
 
----
+
 
 ## PCA9685 Specifications
 
@@ -154,27 +154,3 @@ The **MG996R** arm servos and **MG90S** head servos operate from **5 V** and are
 
 </tr>
 </table>
-
-
-## Servo Channel Mapping
-
-| Servo | Joint | PCA9685 | Channel |
-|---|---|:---:|:---:|
-| WP5335 | Left Pelvis | Legs | 4 |
-| WP5335 | Left Hip | Legs | 11 |
-| WP5335 | Left Knee | Legs | 9 |
-| WP5335 | Left Ankle | Legs | 14 |
-| WP5335 | Right Pelvis | Legs | 5 |
-| WP5335 | Right Hip | Legs | 10 |
-| WP5335 | Right Knee | Legs | 8 |
-| WP5335 | Right Ankle | Legs | 15 |
-| MG996R | Left Shoulder | Arms | 0 |
-| MG996R | Left Elbow | Arms | 2 |
-| MG996R | Left Hand | Arms | 4 |
-| MG996R | Right Shoulder | Arms | 1 |
-| MG996R | Right Elbow | Arms | 3 |
-| MG996R | Right Hand | Arms | 5 |
-| MG90S | Head X-axis | Arms | 14 |
-| MG90S | Head Y-axis | Arms | 15 |
-
-
