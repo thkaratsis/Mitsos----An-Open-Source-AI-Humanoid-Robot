@@ -4,6 +4,20 @@
   <img src="https://raw.githubusercontent.com/thkaratsis/Mitsos----An-Open-Source-AI-Humanoid-Robot/main/schemes/Power%20Management/Power%20Managment.png" alt="Power Management Schematic" width="900">
 </p>
 
+             2S2P Li-ion Battery
+                     |
+                 HX-2S-01 BMS
+                     |
+                4A Fuse
+                     |
+                Main Switch
+                     |
+    --------------------------------
+    |              |               |
+    |              |               |
+ 5V Rail 1      5V Rail 2      Servo Rail
+    |              |               |
+
 
 The system is powered by **four 18650 batteries**, consisting of **two parallel cell groups connected in series**, creating a **2S2P lithium-ion battery pack**.
 
