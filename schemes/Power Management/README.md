@@ -1,7 +1,7 @@
 # Power Management
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/thkaratsis/Mitsos----An-Open-Source-AI-Humanoid-Robot/main/schemes/Power%20Management/Sheet_1.png" alt="Power Management Schematic" width="900">
+  <img src="https://raw.githubusercontent.com/thkaratsis/Mitsos----An-Open-Source-AI-Humanoid-Robot/main/schemes/Power%20Management/Power%20Management.png" alt="Power Management Schematic" width="900">
 </p>
 
 
