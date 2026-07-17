@@ -65,3 +65,17 @@ Since several components of the robot require a regulated **5 V** supply, dedica
 
 **Supplies:**
 - MG996R Servos
+
+
+# Current Consumption 
+| Component | Voltage | Typical Current | Maximum Current |
+|---|---|---|---|
+| Raspberry Pi 5 | 5V | 1.5A | 5A |
+| ESP32 | 5V/3.3V | 100mA | 300mA |
+| ToF Sensors | 3.3V | 120mA | 200mA |
+| IMU | 3.3V | 10mA | 20mA |
+| TFT Display | 5V | 150mA | 250mA |
+| MAX98357A | 5V | 100mA | 500mA |
+| Servo System | 5-8V | 3A | 15A+ |
+
+> **Note:** The stall current of the servos can exceed **15A**. However, the robot is designed so that the servos do not operate maximum load. Therefore, the actual current consumption remains well within the output capability of the **4 A DC-DC step-down converter**.
