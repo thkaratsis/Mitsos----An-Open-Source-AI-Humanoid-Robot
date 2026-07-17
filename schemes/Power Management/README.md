@@ -108,4 +108,6 @@ Since several components of the robot require a regulated **5 V** supply, dedica
 | MG996R Servo System | 5V | 2A | 8A |
 | WP5335 Servo System | 6-8.4V (VBAT) | 3A | 15A+ |
 
-> **Note:** The stall current of the servos can exceed **15A**. However, the robot is designed so that the servos do not operate maximum load. Therefore, the actual current consumption remains well within the output capability of the **4 A DC-DC step-down converter**.
+> **Note:** Although the **WP5335 servos** can draw more than **15 A**, the robot is mechanically and electronically designed so that the servos never operate at stall torque. Consequently, the **4 A fuse** and the **8.4 V (VBAT) power rail** are sufficient for normal operation.
+>
+> The same principle applies to the **MG996R servos**. While their combined peak current can exceed **8 A**, the robot's mechanical design prevent them from reaching this level of consumption. Therefore, the **5 V / 4 A DC-DC step-down converter** is capable of supplying the required current during all intended operating conditions.
