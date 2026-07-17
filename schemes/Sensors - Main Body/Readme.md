@@ -154,3 +154,54 @@ The **MG996R** arm servos and **MG90S** head servos operate from **V+** and are 
 
 </tr>
 </table>
+
+# Camera
+
+The robot is equipped with an **IMX219 camera module**, which its primary vision sensor.
+
+Its applications includes **AI-based object detection**, **embedded vision-language models (Vision LLMs)**, and **inverse kinematics**. By combining computer vision with AI inference, the robot can identify and classify objects, estimate their position relative to its body, and calculate the arm movements required to grasp or interact with them. The camera also supports future applications such as visual navigation, human detection, gesture recognition, and object tracking.
+
+
+## IMX219 Camera Specifications
+
+| Specification | Value |
+|---|---|
+| Sensor | Sony IMX219 |
+| Resolution | 8 Megapixels |
+| Maximum Still Resolution | 3280 × 2464 pixels |
+| Video Resolution | 1080p @ 30 FPS |
+| Maximum Frame Rate | Up to 120 FPS (reduced resolution) |
+| Sensor Size | 1/4" CMOS |
+| Pixel Size | 1.12 μm × 1.12 μm |
+| Interface | MIPI CSI-2 (2-lane) |
+| Focus | Fixed Focus |
+| Field of View | ~62.2° Horizontal |
+| Operating Voltage | 3.3 V |
+
+
+## Ribbon Connector
+
+The robot utilizes **two custom-designed boards**: a **main board**, located inside the robot's torso, and a **secondary head board**, mounted inside the head. 
+
+The two boards are connected through a **16-pin ribbon cable**, which gives both power and communication signals between the body and the head. This connection distributes **5 V** and **3.3 V** power while also providing **I²S** and **SPI** communication interfaces for the sensors and peripherals mounted on the head.
+
+## 16-Pin Ribbon Cable Pinout
+
+| Pin | Signal | Description |
+|:---:|---|---|
+| 1 | MOSI | SPI Master Out Slave In |
+| 2 | BCLK | I²S Bit Clock |
+| 3 | MISO | SPI Master In Slave Out |
+| 4 | LRC | I²S Left/Right Clock (Word Select) |
+| 5 | SCLK | SPI Clock |
+| 6 | DIN (Microphone) | I²S Data from Microphone |
+| 7 | CS | SPI Chip Select |
+| 8 | DIN (Speaker) | I²S Data to MAX98357A Amplifier |
+| 9 | RESET | TFT Display Reset |
+| 10 | Reserved | Not Connected |
+| 11 | DC | TFT Display Data/Command |
+| 12 | 3.3 V | Logic Power Supply |
+| 13 | Reserved | Not Connected |
+| 14 | Reserved | Not Connected |
+| 15 | GND | Common Ground |
+| 16 | 5 V | Power Supply |
