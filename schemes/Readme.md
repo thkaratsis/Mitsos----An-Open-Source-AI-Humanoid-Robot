@@ -1,29 +1,3 @@
-## Hardware Architecture
-
-```mermaid
-flowchart TD
-
-    PWR["Power Management"]
-
-    CTRL["Controllers"]
-
-    MAIN["Sensors - Main Body"]
-
-    HEAD["Sensors - Head"]
-
-    LIGHT["Camera RingLight"]
-
-    SERVO["Servo Controller"]
-
-    PWR --> CTRL
-
-    CTRL --> MAIN
-    CTRL --> HEAD
-    CTRL --> SERVO
-
-    HEAD --> LIGHT
-```
-
 
 # Folder Overview
 
