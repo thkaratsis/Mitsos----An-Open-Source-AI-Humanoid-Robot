@@ -8,57 +8,93 @@
 ```mermaid
 flowchart TB
 
-    %% =========================
-    %% Main Processing
-    %% =========================
+%% =====================================================
+%% PROCESSING
+%% =====================================================
 
-    PI[" Raspberry Pi 5<br/>High-Level Control<br/>AI Inference<br/>Computer Vision"]
+    PI["Raspberry Pi 5"]
+    ESP["ESP32-S3-N8R8"]
 
-    ESP[" ESP32-S3-N8R8<br/>Real-Time Sensor Controller"]
+    PI <-->|UART| ESP
 
-    CAM[" Sony IMX219<br/>8 MP Camera"]
+%% =====================================================
+%% CAMERA
+%% =====================================================
 
-    %% =========================
-    %% Sensor Bus
-    %% =========================
+    CAM["Sony IMX219 Camera"]
+
+    CAM -->|MIPI CSI-2| PI
+
+%% =====================================================
+%% SENSOR BUS
+%% =====================================================
 
     I2C["I²C Bus"]
 
-    IMU[" LSM6DS3<br/>6-Axis IMU"]
-
-    TOF[" 5 × VL53L0X<br/>Time-of-Flight Sensors"]
-
-    XSHUT["GPIO XSHUT<br/>Address Assignment"]
-
-    %% =========================
-    %% Connections
-    %% =========================
-
-    CAM -- "MIPI CSI-2" --> PI
-
-    PI <-->|"UART 115200 bps"| ESP
-
     ESP --> I2C
+
+    IMU["LSM6DS3 IMU"]
+
+    TOF["5 × VL53L0X ToF Sensors"]
 
     I2C --> IMU
     I2C --> TOF
 
-    ESP -. "GPIO" .-> XSHUT
-    XSHUT -.-> TOF
+    ESP -. XSHUT GPIO .-> TOF
 
-    %% =========================
-    %% Colors
-    %% =========================
+%% =====================================================
+%% SERVO BUS
+%% =====================================================
 
-    classDef pi fill:#d9ead3,stroke:#6aa84f,stroke-width:2px,color:#000;
-    classDef esp fill:#d9eaf7,stroke:#3d85c6,stroke-width:2px,color:#000;
-    classDef sensor fill:#fff2cc,stroke:#bf9000,stroke-width:2px,color:#000;
-    classDef bus fill:#eeeeee,stroke:#666666,stroke-width:2px,color:#000;
+    PCA1["PCA9685 #1<br/>Leg Servos"]
 
-    class PI pi
-    class ESP esp
-    class CAM,IMU,TOF sensor
-    class I2C,XSHUT bus
+    PCA2["PCA9685 #2<br/>Arms & Head"]
+
+    ESP -->|I²C| PCA1
+    ESP -->|I²C| PCA2
+
+%% =====================================================
+%% LEG SERVOS
+%% =====================================================
+
+    WP["8 × WP5335 Servos"]
+
+    PCA1 -->|PWM| WP
+
+%% =====================================================
+%% ARM SERVOS
+%% =====================================================
+
+    MG996["6 × MG996R Servos"]
+
+    PCA2 -->|PWM| MG996
+
+%% =====================================================
+%% HEAD SERVOS
+%% =====================================================
+
+    MG90["2 × MG90S Servos"]
+
+    PCA2 -->|PWM| MG90
+
+%% =====================================================
+%% COLORS
+%% =====================================================
+
+classDef processor fill:#d9ead3,stroke:#38761d,stroke-width:2px;
+classDef controller fill:#d9eaf7,stroke:#0b5394,stroke-width:2px;
+classDef sensor fill:#fff2cc,stroke:#bf9000,stroke-width:2px;
+classDef servo fill:#f4cccc,stroke:#990000,stroke-width:2px;
+classDef bus fill:#eeeeee,stroke:#666666,stroke-width:2px;
+
+class PI processor
+class ESP controller
+
+class CAM,IMU,TOF sensor
+
+class PCA1,PCA2 bus
+
+class WP,MG996,MG90 servo
 ```
 
 
