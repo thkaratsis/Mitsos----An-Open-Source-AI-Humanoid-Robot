@@ -90,7 +90,7 @@ The microphone is used together with a **Speech-to-Text (STT)** model, enabling 
 | Current Consumption | ~600 μA |
 | Primary Function | Voice recognition |
 
----
+
 
 # Camera Ring Light
 
