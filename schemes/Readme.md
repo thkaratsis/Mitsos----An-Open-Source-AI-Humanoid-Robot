@@ -11,7 +11,7 @@
 
 # Documentation
 
-Every hardware subsystem includes:
+Every hardware subfolder includes:
 
 - Electrical schematic
 - Hardware overview
@@ -19,5 +19,3 @@ Every hardware subsystem includes:
 - Component specifications
 - Design considerations
 - Mermaid block diagrams
-
-This modular documentation structure makes it easier to understand, maintain, and extend the robot's electronics while providing a complete reference for anyone wishing to reproduce or modify the hardware.
