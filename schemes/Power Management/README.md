@@ -6,13 +6,19 @@
 
 ```mermaid
 flowchart TD
-    A[" 2S2P Li-ion Battery Pack"] --> B[" HX-2S-01 BMS"]
-    B --> C[" 4A Fuse"]
-    C --> D[" Main Power Switch"]
+    A[" 2S2P Li-ion Battery Pack (6.0–8.4 V)"]
+    B[" HX-2S-01 BMS"]
+    C[" 4 A Fuse"]
+    D[" Main Power Switch"]
 
-    D --> E[" LM2596<br/>5V Rail #1"]
-    D --> F[" LM2596<br/>5V Rail #2"]
-    D --> G[" Waveshare<br/>Servo Rail"]
+    A --> B
+    B --> C
+    C --> D
+
+    D --> E[" LM2596 Buck Converter #1<br/>5 V / 3 A"]
+    D --> F[" LM2596 Buck Converter #2<br/>5 V / 3 A"]
+    D --> G[" Waveshare Step-Down<br/>5 V / 4 A"]
+    D --> H[" 8.4 V Servo Rail"]
 
     E --> E1["Raspberry Pi 5"]
     E --> E2["MAX98357A"]
@@ -23,8 +29,9 @@ flowchart TD
     F --> F3["Peripherals"]
 
     G --> G1["MG996R Servos"]
-```
 
+    H --> H1["WP5335 Leg Servos"]
+```
 
 The system is powered by **four 18650 batteries**, consisting of **two parallel cell groups connected in series**, creating a **2S2P lithium-ion battery pack**.
 
