@@ -7,25 +7,39 @@
 ```mermaid
 flowchart LR
 
-    subgraph SBC[" Raspberry Pi 5"]
-        PI1["High-Level Control"]
-        PI2["Computer Vision"]
-        PI3["AI Inference"]
-        PI4["Navigation"]
-    end
+%%==========================
+%% Raspberry Pi
+%%==========================
+subgraph PI["🖥️ Raspberry Pi 5"]
+direction TB
+    HC["High-Level Control"]
+    CV["Computer Vision"]
+    AI["AI Inference"]
+    NAV["Navigation"]
+end
 
-    subgraph MCU[" ESP32-S3-N8R8"]
-        ESP1["Servo Control"]
-        ESP2["Real-Time Sensors"]
-        ESP3["IMU"]
-        ESP4["ToF Sensors"]
-        ESP5["Ultrasonic Sensors"]
-    end
+%%==========================
+%% UART
+%%==========================
+UART["🔄 UART<br/>TX ↔ RX"]
 
-    SBC <-->|"UART (TX/RX)<br/>Bidirectional Serial Communication"| MCU
+%%==========================
+%% ESP32
+%%==========================
+subgraph ESP["⚙️ ESP32-S3-N8R8"]
+direction TB
+    SERVO["Servo Control"]
+    RT["Real-Time Tasks"]
+    IMU["IMU"]
+    TOF["ToF Sensors"]
+    US["Ultrasonic Sensors"]
+end
 
-    PI1 -. "Servo Commands" .-> MCU
-    MCU -. "Sensor Data" .-> PI1
+PI <-->|Bidirectional Communication| UART
+UART <-->|Bidirectional Communication| ESP
+
+HC -. Servo Commands .-> SERVO
+RT -. Sensor Data .-> HC
 ```
 
 The robot's main controller is the **Raspberry Pi 5**, a powerful single-board computer (SBC) responsible for high-level control, computer vision, and AI inference. An **ESP32-S3-N8R8** microcontroller is used alongside the Raspberry Pi to accurate controll and gather data from all of the sensors.
