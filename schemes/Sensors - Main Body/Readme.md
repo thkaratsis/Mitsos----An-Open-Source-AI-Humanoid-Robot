@@ -63,6 +63,6 @@ The LSM6DS3 combines a **3-axis accelerometer** and a **3-axis gyroscope** into 
 | Power Consumption | As low as 0.9 mA (typical) |
 
 
-> **💡 Sensor Integration**
+> **Sensor Integration**
 >
 > The **LSM6DS3** is connected to the **ESP32-S3** through the **I²C bus**. The ESP32 continuously gathers acceleration and gyroscope measurements, processes the raw sensor data, and transmits orientation and motion information to the **Raspberry Pi 5** via the **UART** interface. This allows the ESP32 to perform  real-time sensor acquisition while the Raspberry Pi focuses on high-level control
