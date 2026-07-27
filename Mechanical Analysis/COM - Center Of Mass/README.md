@@ -5,7 +5,7 @@ By analyzing the center of mass in different configurations, it is possible to e
 
 
 <p align="center">
-  <img src="./[com_cases.png](Mechanical Analysis/COM - Center Of Mass/COM-Positions.png)" width="900">
+  <img src="./[com_cases.png](./COM-Positions.png)" width="900">
 </p>
 
 
