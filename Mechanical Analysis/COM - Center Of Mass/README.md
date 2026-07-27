@@ -5,7 +5,7 @@ By analyzing the center of mass in different configurations, it is possible to e
 
 
 <p align="center">
-  <img src="./[com_cases.png](https://github.com/thkaratsis/Mitsos----An-Open-Source-AI-Humanoid-Robot/blob/main/Mechanical%20Analysis/COM%20-%20Center%20Of%20Mass/COM-Positions.png)" width="900">
+  <img src="./[com_cases.png](Mechanical Analysis/COM - Center Of Mass/COM-Positions.png)" width="900">
 </p>
 
 
