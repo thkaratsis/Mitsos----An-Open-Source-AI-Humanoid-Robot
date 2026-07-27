@@ -3,12 +3,9 @@
 The robot’s total mass is distributed across the head, body, arms, and legs.  
 By analyzing the center of mass in different configurations, it is possible to estimate how stable the robot remains during standing, leg lifting, and arm movement.
 
-<p align="center">
-  <img src="./com_standing.png" width="900">
-</p>
 
 <p align="center">
-  <img src="./com_cases.png" width="900">
+  <img src="./[com_cases.png](https://github.com/thkaratsis/Mitsos----An-Open-Source-AI-Humanoid-Robot/blob/main/Mechanical%20Analysis/COM%20-%20Center%20Of%20Mass/COM-Positions.png)" width="900">
 </p>
 
 
